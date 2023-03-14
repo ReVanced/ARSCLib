@@ -23,7 +23,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-class ValuesEncoder {
+public class ValuesEncoder {
     private final EncodeMaterials materials;
     private final Map<String, XMLValuesEncoder> xmlEncodersMap;
     private final Map<String, XMLValuesEncoderBag> xmlBagEncodersMap;
@@ -67,7 +67,7 @@ class ValuesEncoder {
         XMLDocument xmlDocument = XMLDocument.load(valuesXmlFile);
         encodeValuesXml(type, qualifiers, xmlDocument);
     }
-    private void encodeValuesXml(String type, String qualifiers, XMLDocument xmlDocument) {
+    public void encodeValuesXml(String type, String qualifiers, XMLDocument xmlDocument) {
         type=getType(xmlDocument, type);
         XMLValuesEncoder encoder;
         if(isBag(xmlDocument, type)){
