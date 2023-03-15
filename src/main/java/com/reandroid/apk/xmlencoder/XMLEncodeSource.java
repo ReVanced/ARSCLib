@@ -26,7 +26,7 @@ import java.io.OutputStream;
 
 public class XMLEncodeSource extends ByteInputSource {
     private final EncodeMaterials encodeMaterials;
-    private final XMLSource xmlSource;
+    public final XMLSource xmlSource;
     private ResXmlDocument resXmlDocument;
     public XMLEncodeSource(EncodeMaterials encodeMaterials, XMLSource xmlSource){
         super(new byte[0], xmlSource.getPath());
