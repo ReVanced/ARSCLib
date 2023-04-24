@@ -1,8 +1,14 @@
+plugins {
+    id("java")
+    id("maven-publish")
+}
 
-apply plugin: 'java'
+group 'app.revanced'
+version '1.1.6-dev'
 
-group 'com.reandroid'
-version '1.1.6'
+
+ext.mainArtifact = 'arsclib'
+ext.artifactName = mainArtifact
 
 java {
     sourceCompatibility JavaVersion.VERSION_1_8
@@ -40,5 +46,21 @@ jar {
     exclude('com/reandroid/test/**')
 }
 
-
-
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/revanced/ARSCLib")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
+                password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            artifactId = mainArtifact
+            from(components.java)
+        }
+    }
+}
